@@ -1,0 +1,162 @@
+<html>
+    
+<head>
+    <title>Sample App</title>
+    <link rel="shortcut icon" href="">
+    <style>
+    .inline {
+        display: inline-block;
+        background-color: #EFEFEF;
+    }
+    .agenda-container {
+        height: 0px;
+        position: relative;
+    }
+    .agenda-container-table {
+        position: absolute;
+        top: 0px;
+        border: 0px none;
+        table-layout: fixed;
+    }
+    .agenda-container-cell {
+        background-color: #3174ad;
+        width: 130px;
+        height: 50px;
+        position: absolute;
+        top: 100;
+        left: 130;
+        resize: vertical;
+        border: 1px solid #265985;
+        transition: opacity 250ms;
+        pointer-events: all;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .sc-header-container {
+        display: inline-block;
+    }
+    .sc-grid-container {
+        border-top: 1px solid #ddd;
+        display: inline-block;
+        background-color: #EFEFEF;
+    }
+    .sc-timeslot-container {
+        border-left: 1px solid #DDD;
+        border-top: 1px solid #DDD;
+    }
+    .sc-timeslot-row,
+    .sc-grid-row,
+    .sc-header-row {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+    .sc-timeslot-col,
+    .sc-grid-col,
+    .sc-header-col {
+        padding: 0px;
+        border: 0px none;
+        vertical-align: top;
+        overflow: hidden;
+        display: table-cell;
+        height: 25px;
+    }
+    .sc-grid-col,
+    .sc-header-col {
+        width: 130px;
+    }
+    .sc-timeslot-col,
+    .sc-header-timeslot-col {
+        width: 75px;
+    }
+    .sc-header-timeslot-col {
+        border-right: 1px solid #ddd;
+    }
+    .sc-timeslot-cell,
+    .sc-grid-cell,
+    .sc-header-cell {
+        height: 25px;
+        position: relative;
+        overflow: hidden;
+    }
+    .sc-timeslot-innercell,
+    .sc-grid-innercell,
+    .sc-header-innercell {
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        position: absolute;
+    }
+    .sc-timeslot-innercell {
+        text-align: right;
+        font-size: 12px;
+        background-color: #e0eaf9;
+    }
+    .sc-header-innercell {
+        font-size: 14px;
+        vertical-align: middle;
+        line-height: 25px;
+        padding-left: 8px;
+    }
+    
+     .sc-agenda-details{
+         font-size: 11px;
+         font-family: 'Helvetica Neue,Helvetica,Arial,sans-serif';
+         padding-top : 4px;
+         text-align: center;
+     }
+     .resize{
+       position: absolute;
+       z-index: 2;
+     }
+     .resize-top:after, .resize-bottom:after{
+        top:1px;
+        left:50%;
+        margin-left:-1em;
+        width:2em;
+        height:1px;
+       
+     }
+     .resize:after{
+         content:"";
+         position:absolute;
+         filter:alpha(opacity=50);
+         opacity:.5;
+      }
+     
+     .resize-top{
+        top: 0;
+        left: 0;
+        right: 0;
+        height: .4em;
+        cursor: n-resize;
+     }
+    .resize-bottom{
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: .4em;
+       cursor: n-resize;
+     }
+     .agenda-resize-mask{
+            top: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            background-color: #8c42f4;
+            opacity: .6;
+            z-index: 4;
+            border-radius: 5px;
+            border: 1px solid #265985;
+     }
+    </style>
+</head>
+<body>
+    <div id='root'></div>
+    <script src="/static/bundle.js"></script>
+    
+</body>
+</html>
