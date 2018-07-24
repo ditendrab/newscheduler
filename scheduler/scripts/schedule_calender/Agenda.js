@@ -17,11 +17,13 @@ import AgendaDetail from './AgendaDetail';
     const left = 180+ dayDiff * layout.CELL_WIDTH;
     return left;
    }
+   
    caculateWidth(agEndDate, agStartDate){
     const agDayDiff = helper.getDateDifferenceInDay(agEndDate, agStartDate);
-    const width = agDayDiff * 35;
+    const width = (agDayDiff+1) * 35;
     return width;
    }
+
    getMachedHeaderIndex(headerList, id){
     let matchedIndex = 0;  
     console.log("headerList=",headerList);
