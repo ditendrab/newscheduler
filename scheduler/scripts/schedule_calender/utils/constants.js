@@ -11,8 +11,8 @@ export const timeSlot = {
 };
 
 export const layout = {
-  CELL_HEIGHT: 25,
-  CELL_WIDTH: 130,
+  CELL_HEIGHT: 35,
+  CELL_WIDTH: 35,
   BACKGROUND_COLOR:'#888888'
 };
 export const dateFormat = {

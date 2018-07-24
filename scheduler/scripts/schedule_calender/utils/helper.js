@@ -56,6 +56,15 @@ let helper = {
      return moment.duration(localDateTime).asMinutes();
      
   },
+
+  getDateDifferenceInDay(date1, date2){
+    var d1 = new Date(date1);
+    var d2 = new Date(date2);
+    var timeDiff = Math.abs(d1.getTime() - d2.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    return diffDays;
+  },
+
   getMinutesFromTimeString(timeStr){
      let times = helper.splitTime(timeStr);
      if(times.meridiem === 'AM'&& times.hour === 12){

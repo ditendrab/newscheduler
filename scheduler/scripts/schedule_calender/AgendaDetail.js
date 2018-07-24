@@ -14,8 +14,8 @@ import classnames from 'classnames';
    
    
     render(){
-        const { connectDragSource, id, top, height, left, agenda } = this.props;
-        let timeSlotLabel = 'test';//helper.getTimeIntervalLabel(agenda.ScheduledDate, agenda.Duration);
+        const { connectDragSource, id, top, height, width, left, agenda } = this.props;
+        let timeSlotLabel = '';//helper.getTimeIntervalLabel(agenda.ScheduledDate, agenda.Duration);
 
         return (
             <div id={id} 
@@ -24,6 +24,7 @@ import classnames from 'classnames';
                  style = {{
                     top : `${top}px`,
                     height: `${height}px`,
+                    width: `${width}px`,
                     left: `${left}px`
                 }}>
                 <div className={classnames('sc-agenda-details')}>{timeSlotLabel}</div>
