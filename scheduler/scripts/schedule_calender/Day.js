@@ -4,10 +4,12 @@ import helper from './utils/helper';
 class Day extends Component {
  renderHeaderForDay(dateList){
      return (
-            <tr>
+            <tr> 
+              <th></th>
                  {
-                     dateList.map((head, i)=><td key={head+i} className={classnames('sc-header-col')}>
-                     <div>{head.day}</div></td> )  
+                   
+                     dateList.map((head, i)=><th key={head+i}>
+                     <div  className={classnames('sc-day-header-col')}>{head.day}</div></th> )  
                   }
             </tr>
      );
@@ -16,9 +18,10 @@ class Day extends Component {
   renderHeaderForDate(dateList){
      return (
             <tr>
+              <td>Meadia/Channel</td>
                  {
-                     dateList.map((head, i)=><td key={head+i} className={classnames('sc-header-col')}>
-                     <div>{head.date}</div></td> )  
+                     dateList.map((head, i)=><td key={head+i} >
+                     <div className={classnames('sc-day-cell')}>{head.date}</div></td> )  
                   }
             </tr>
      );
@@ -30,6 +33,7 @@ class Day extends Component {
     console.log(dateList)
     return (
      <thead>
+         
          {this.renderHeaderForDay(dateList)}
           {this.renderHeaderForDate(dateList)}
      </thead>

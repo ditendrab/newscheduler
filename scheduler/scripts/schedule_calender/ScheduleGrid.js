@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import classnames from 'classnames';
 import Day from './Day';
 
 class ScheduleGrid extends Component {
@@ -12,7 +12,7 @@ class ScheduleGrid extends Component {
     }
    }
     render() {
-        return(<table>{this.renderHeader(this.props)}</table>);
+        return(<table className={classnames('schedule-grid')}>{this.renderHeader(this.props)}</table>);
        
     }
  } 
