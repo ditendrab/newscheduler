@@ -1,33 +1,106 @@
 <html>
-    
+
 <head>
     <title>Sample App</title>
     <link rel="shortcut icon" href="">
     <style>
-    .inline {
-        display: inline-block;
-        background-color: #EFEFEF;
-    }
-   .schedule-grid{
-     border-collapse: collapse;
-     border: 1px solid black;
-    }
-     .schedule-grid td, .schedule-grid th{
-        border:1px solid #ddd;
-      }
-     .schedule-grid  th .sc-day-header-col,  .schedule-grid  td .sc-day-cell{
-        width: 35px;
-        text-align: center;
-     }
-     .schedule-grid tr{
-         border-bottom:1px solid #777; 
-         height:35px;
-     }
+        .inline {
+            display: inline-block;
+            background-color: #EFEFEF;
+        }
+
+        .schedule-grid {
+            border-collapse: collapse;
+            border: 1px solid #666;
+        }
+
+        .sc-grid-cell,
+        .sc-header-cell {
+            position: relative;
+            overflow: hidden;
+            height: 35px;
+            width: 35px;
+            text-align: center;
+        }
+
+        .sc-left-header-cell {
+            position: relative;
+            overflow: hidden;
+            height: 35px;
+            width: 180px;
+            text-align: center;
+        }
+
+
+        .schedule-grid th .sc-day-header-col,
+        .schedule-grid td .sc-day-cell {
+            width: 35px;
+            text-align: center;
+        }
+
+        .schedule-grid tr {
+            height: 35px;
+        }
+
+        .sc-container {
+            position: relative;
+        }
+
+        .agenda-container-table {
+            position: absolute;
+            top: 0px;
+            border: 0px none;
+            table-layout: fixed;
+        }
+
+        .agenda-container-cell {
+            background-color: #3174ad;
+            width:35px;
+            height: 35px;
+            position: absolute;
+            top: 70;
+            left: 180;
+            resize: vertical;
+            border: 1px solid #265985;
+            transition: opacity 250ms;
+            pointer-events: all;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .sc-grid-innercell,
+        .sc-header-innercell {
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            border-right: 1px solid #666;
+            border-bottom: 1px solid #666;
+            position: absolute;
+        }
+
+        .sc-timeslot-col,
+        .sc-grid-col,
+        .sc-header-col {
+            padding: 0px;
+            border: 0px none;
+            vertical-align: top;
+            overflow: hidden;
+            display: table-cell;
+            width: 35px;
+        }
+
+        .sc-grid-row {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
     </style>
 </head>
+
 <body>
     <div id='root'></div>
     <script src="/static/bundle.js"></script>
-    
 </body>
+
 </html>
