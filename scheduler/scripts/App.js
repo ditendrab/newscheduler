@@ -5,10 +5,10 @@ import { views} from './schedule_calender/utils/constants';
 
 const agendaList = [{ id:1, "StartDate": "07-20-2018", "EndDate": '07-23-2018', 'RefId':'2'},
 { id:1, "StartDate": "07-07-2018", "EndDate": '07-12-2018','RefId':'3'},
-{ id:1, "StartDate": "07-05-2018", "EndDate": '07-10-2018','RefId':'1'},
+{ id:1, "StartDate": "07-05-2018", "EndDate": '07-05-2018','RefId':'1'},
 { id:1, "StartDate": "07-10-2018", "EndDate": '07-20-2018','RefId':'5'},
 { id:1, "StartDate": "07-09-2018", "EndDate": '07-15-2018','RefId':'6'},
-{ id:1, "StartDate": "07-20-2018", "EndDate": '07-26-2018','RefId':'1'}];
+{ id:1, "StartDate": "07-19-2018", "EndDate": '07-26-2018','RefId':'1'}];
 
   
 
@@ -25,7 +25,7 @@ let current;
 class App extends Component {
    constructor(){
      super();
-     this.state = { agendaList: agendaList, headerList: headerList, currentView: views.DAY};
+     this.state = { agendaList: agendaList, headerList: headerList, currentView: views.WEEK};
      current = this;
   }  
 
@@ -58,11 +58,13 @@ class App extends Component {
   }
 
   render() {
+    console.log("#####",current.state.currentView);
+    let view = current.state.currentView;
     return (
      <div>
-       <button type="button" className="btn" id="day" onClick={this.viewChange}>Day</button>
-       <button type="button" className="btn" id="week" onClick={this.viewChange}>Week</button>
-       <button type="button" className="btn" id="month" onClick={this.viewChange}>Month</button>
+       <button className={(view == 'day' ? classnames('btn active-btn') : 'btn')} type="button"  id="day" onClick={this.viewChange}>Day</button>
+       <button className={(view == 'week' ?  classnames('btn active-btn') : 'btn')} type="button"  id="week" onClick={this.viewChange}>Week</button>
+       <button className={(view == 'month' ?  classnames('btn active-btn') : 'btn')} type="button" id="month" onClick={this.viewChange}>Month</button>
         {current.renderScheduler('day')}
       </div>
     );

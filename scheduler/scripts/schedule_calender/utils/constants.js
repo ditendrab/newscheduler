@@ -12,7 +12,11 @@ export const timeSlot = {
 
 export const layout = {
   CELL_HEIGHT: 35,
-  CELL_WIDTH: 35,
+  DAY_CELL_WIDTH: 35,
+  MONTH_CELL_WIDTH: 20,
+  DAY_MARGIN_TOP:105,
+  MONTH_MARGIN_TOP:70,
+  YEAR_CELL_WIDTH: 5,
   BACKGROUND_COLOR:'#888888'
 };
 export const dateFormat = {
@@ -33,4 +37,19 @@ export const day = {
   5: 'Th',
   6: 'Fr',
   7: 'Sa'
+};
+export const month = {
+  0: 'Jan',
+  1: 'Feb',
+  2: 'March',
+  3: 'April',
+  4: 'May',
+  5: 'June',
+  6: 'July',
+  7: 'Aug',
+  8: 'Sep',
+  9: 'Oct',
+  10: 'Nov',
+  11: 'Dec'
+
 };

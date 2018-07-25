@@ -14,14 +14,6 @@
             border: 1px solid #666;
         }
 
-        .sc-grid-cell,
-        .sc-header-cell {
-            position: relative;
-            overflow: hidden;
-            height: 35px;
-            width: 35px;
-            text-align: center;
-        }
 
         .sc-left-header-cell {
             position: relative;
@@ -55,7 +47,7 @@
 
         .agenda-container-cell {
             background-color: #3174ad;
-            width:35px;
+            width: 35px;
             height: 35px;
             position: absolute;
             top: 70;
@@ -66,6 +58,20 @@
             pointer-events: all;
             color: #fff;
             border-radius: 5px;
+        }
+
+        .sc-grid-cell,
+        .sc-header-cell {
+            position: relative;
+            overflow: hidden;
+            height: 35px;
+            text-align: center;
+        }
+        .sc-top-header-cell{
+            position: relative;
+            overflow: hidden;
+            height: 35px;
+            text-align: center;
         }
 
         .sc-grid-innercell,
@@ -90,10 +96,22 @@
             width: 35px;
         }
 
+        .sc-top-header-col {
+            padding: 0px;
+            border: 0px none;
+            vertical-align: middle;
+            display: table-cell;
+            line-height: 35px;
+        }
+
         .sc-grid-row {
             display: table-row;
             vertical-align: inherit;
             border-color: inherit;
+        }
+        .active-btn{
+            background-color: #3174ad;
+            color: #fff;
         }
     </style>
 </head>
