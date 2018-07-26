@@ -4,26 +4,34 @@ import helper from './utils/helper';
 import { layout} from './utils/constants';
 import Day from './Day';
 import Week from './Week';
+import Month from './Month';
 
 class ScheduleGrid extends Component {
   
    renderIntervalRows(props){
+     console.log("props.view=",props.view)
     if(props.view == 'day'){
      return (
         <Day width={layout.DAY_CELL_WIDTH} {...this.props}/>
       );
     }else  if(props.view == 'week'){
       return (
-          <Week  width={layout.MONTH_CELL_WIDTH} {...this.props}/>
+          <Week  width={layout.WEEK_CELL_WIDTH} {...this.props}/>
        
        );
-     }
+     }else  if(props.view == 'month'){
+      return (
+          <Month  width={layout.MONTH_CELL_WIDTH} {...this.props}/>
+       
+       );
+     } 
    }
    
    renderHeaderRows(props){
-    const { header, startDate, endDate } = props; 
+    const { header, startDate, endDate, view } = props; 
     let dateList =  helper.getDateList(startDate, endDate);
-    const width = props.view == 'day'? layout.DAY_CELL_WIDTH  : layout.MONTH_CELL_WIDTH;
+    console.log("dateList",dateList);
+    const width = helper.getCellWidth(view);
     let widthStyle = { width: width+'px' }
     return (
       <tbody> 

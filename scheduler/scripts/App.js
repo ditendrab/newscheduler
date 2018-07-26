@@ -4,11 +4,11 @@ import classnames from 'classnames';
 import { views} from './schedule_calender/utils/constants';
 
 const agendaList = [{ id:1, "StartDate": "07-20-2018", "EndDate": '07-23-2018', 'RefId':'2'},
-{ id:1, "StartDate": "07-07-2018", "EndDate": '07-12-2018','RefId':'3'},
-{ id:1, "StartDate": "07-05-2018", "EndDate": '07-05-2018','RefId':'1'},
-{ id:1, "StartDate": "07-10-2018", "EndDate": '07-20-2018','RefId':'5'},
-{ id:1, "StartDate": "07-09-2018", "EndDate": '07-15-2018','RefId':'6'},
-{ id:1, "StartDate": "07-19-2018", "EndDate": '07-26-2018','RefId':'1'}];
+{ id:1, "StartDate": "06-07-2018", "EndDate": '07-12-2018','RefId':'3'},
+{ id:1, "StartDate": "07-05-2018", "EndDate": '08-05-2018','RefId':'1'},
+{ id:1, "StartDate": "09-10-2018", "EndDate": '10-02-2018','RefId':'5'},
+{ id:1, "StartDate": "08-09-2018", "EndDate": '09-15-2018','RefId':'6'},
+{ id:1, "StartDate": "07-19-2018", "EndDate": '08-26-2018','RefId':'4'}];
 
   
 
@@ -39,8 +39,8 @@ class App extends Component {
 
   renderScheduler(){
 
-    const startDate = "07-01-2018";       
-    const endDate = "09-03-2018";
+    const startDate = "06-01-2018";       
+    const endDate = "02-05-2019";
     const interval = 30;
 
     return (<ScheduleCalender changeState={this.changeState}

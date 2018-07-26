@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { clock, dateFormat, day } from './constants';
-
+import { layout } from './constants';
 
 let helper = {
   splitTime(time, delimiter) {
@@ -65,16 +65,10 @@ let helper = {
     return diffDays;
   },
 
-  getMonthDifference(date1, date2) {
-    var d1 = new Date(date1);
-    var d2 = new Date(date2);
-    return d2.getMonth() - d1.getMonth();
-  },
-
   getDateDifferences(startDate, endDate, delimiter = 'month') {
     var differencesForMonth = [];
     var lastMonthDate;
-    var monthDiff = this.getMonthDifference(startDate, endDate);
+    var monthDiff = this.getMonthDifference(new Date(startDate), new Date(endDate));
     for (var index = 0; index <= monthDiff; index++) {
       var startDateObj = new Date();
       var endDateObj = new Date();
@@ -83,17 +77,18 @@ let helper = {
         endDateObj = this.lastDate(startDateObj.getFullYear(), startDateObj.getMonth());
         lastMonthDate = endDateObj;
       } else if (index == monthDiff) {
-        startDateObj = new Date(lastMonthDate.getFullYear(), lastMonthDate.getMonth()+1, 1);
+        startDateObj = new Date(lastMonthDate.getFullYear(), lastMonthDate.getMonth() + 1, 1);
         endDateObj = new Date(endDate);
       } else {
-        startDateObj = new Date(lastMonthDate.getFullYear(), lastMonthDate.getMonth()+1, 1);
+        startDateObj = new Date(lastMonthDate.getFullYear(), lastMonthDate.getMonth() + 1, 1);
         endDateObj = this.lastDate(startDateObj.getFullYear(), startDateObj.getMonth());
         lastMonthDate = endDateObj;
       }
-     differencesForMonth.push({diff: (endDateObj.getDate() - startDateObj.getDate())+1, month: startDateObj.getMonth(), year: startDateObj.getFullYear()})
+      differencesForMonth.push({ diff: (endDateObj.getDate() - startDateObj.getDate()) + 1, month: startDateObj.getMonth(), year: startDateObj.getFullYear() })
     }
     return differencesForMonth;
   },
+
   getMinutesFromTimeString(timeStr) {
     let times = helper.splitTime(timeStr);
     if (times.meridiem === 'AM' && times.hour === 12) {
@@ -134,9 +129,10 @@ let helper = {
     let startYear = sDate.getFullYear();
     let endYear = eDate.getFullYear();
     let startDay = sDate.getDay();
-    let monthDef = endMonth - startMonth;
+    let monthDef = this.getMonthDifference(sDate, eDate);
+    console.log("@@@@@@@@@@",monthDef);
     var weekDetail = [];
-   
+
     var weekStart = true;
     var weekEnd = false;
 
@@ -144,7 +140,7 @@ let helper = {
       var firstDate = index == 0 ? startDate : 1;
       var lastDate = monthDef == 0 || (monthDef == index) ? endDate : this.lastDate(startYear, startMonth + index).getDate();
       var month = this.lastDate(startYear, startMonth + index).getMonth();
-  
+
       for (var dIndex = firstDate; dIndex <= lastDate; dIndex++) {
         startDay = startDay % 7;
         dateList.push({ date: dIndex, day: day[startDay + 1] });
@@ -153,8 +149,6 @@ let helper = {
     }
     return dateList;
   },
-
-
 
   getWeekList(startDateStr, endDateStr) {
     let dateList = [];
@@ -167,11 +161,12 @@ let helper = {
     let startYear = sDate.getFullYear();
     let endYear = eDate.getFullYear();
     let startDay = sDate.getDay();
-    let monthDef = endMonth - startMonth;
+    let monthDef = this.getMonthDifference(sDate, eDate);
+    console.log("@@@@@@@@@@",monthDef);
     var weekDetail = [];
     var weekStart = true;
     var weekEnd = false;
-    var dayCount =0;
+    var dayCount = 0;
     for (var index = 0; index <= monthDef; index++) {
       var firstDate = index == 0 ? startDate : 1;
       var lastDate = monthDef == 0 || (monthDef == index) ? endDate : this.lastDate(startYear, startMonth + index).getDate();
@@ -180,17 +175,17 @@ let helper = {
       for (var dIndex = firstDate; dIndex <= lastDate; dIndex++) {
         startDay = startDay % 7;
         dayCount++;
-        if(startDay == 6){
+        if (startDay == 6) {
           weekEnd = true;
         }
-        if(weekStart){
-          
-          weekDetail.push({start:{date:dIndex, day: day[startDay + 1], month: month}, end:{}});
+        if (weekStart) {
+
+          weekDetail.push({ start: { date: dIndex, day: day[startDay + 1], month: month }, end: {} });
           weekStart = false;
         }
-        if(weekEnd || (index == monthDef && dIndex == lastDate)){
-          var weekObj = weekDetail[weekDetail.length-1]
-          weekObj.end = {date:dIndex, day: day[startDay + 1],  month: month};
+        if (weekEnd || (index == monthDef && dIndex == lastDate)) {
+          var weekObj = weekDetail[weekDetail.length - 1]
+          weekObj.end = { date: dIndex, day: day[startDay + 1], month: month };
           weekObj['dayDiff'] = dayCount;
           weekStart = true;
           weekEnd = false;
@@ -202,9 +197,81 @@ let helper = {
     return weekDetail;
   },
 
+  getMonthList(startDateStr, endDateStr) {
+    let dateList = [];
+    let sDate = new Date(startDateStr);
+    let eDate = new Date(endDateStr);
+    let startDate = sDate.getDate();
+    let endDate = eDate.getDate();
+    let startMonth = sDate.getMonth();
+    let endMonth = eDate.getMonth();
+    let startYear = sDate.getFullYear();
+    let monthDef = this.getMonthDifference(sDate, eDate);
+    console.log("@@@@@@@@monthDef@@",monthDef);
+    var monthDetail = [];
+
+    for (var index = 0; index <= monthDef; index++) {
+      var firstDate = index == 0 ? startDate : 1;
+      var lastDate = monthDef == 0 || (monthDef == index) ? endDate : this.lastDate(startYear, startMonth + index).getDate();
+      var lastDateObj = this.lastDate(startYear, startMonth + index);
+      var month = lastDateObj.getMonth();
+      var year = lastDateObj.getFullYear();
+      monthDetail.push({ diff: lastDate, month: month, year: year });
+    }
+    return monthDetail;
+  },
+
 
   lastDate(y, m) {
     return new Date(y, m + 1, 0);
+  },
+  getMonthDifference(d1, d2) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months += d2.getMonth();
+    months -= d1.getMonth();
+    return months <= 0 ? 0 : months;
+},
+
+//    monthDiff(startDate, endDate) {
+//     var months;
+//     months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+//     months = months + startDate.getMonth() + endDate.getMonth()+ 1;
+//     return months <= 0 ? 0 : months;
+// },
+  getCellWidth(view) {
+    let width;
+
+    switch (view) {
+      case 'day':
+        width = layout.DAY_CELL_WIDTH
+        break;
+
+      case 'week':
+        width = layout.WEEK_CELL_WIDTH
+        break;
+
+      case 'month':
+        width = layout.MONTH_CELL_WIDTH
+    }
+    return width;
+  },
+  getTopMargin(view) {
+    let marginTop;
+
+    switch (view) {
+      case 'day':
+      marginTop = layout.DAY_MARGIN_TOP
+        break;
+
+      case 'week':
+      marginTop = layout.WEEK_MARGIN_TOP
+        break;
+
+      case 'month':
+      marginTop = layout.MONTH_MARGIN_TOP
+    }
+    return marginTop;
   }
 
 }

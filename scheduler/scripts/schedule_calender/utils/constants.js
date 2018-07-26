@@ -13,10 +13,11 @@ export const timeSlot = {
 export const layout = {
   CELL_HEIGHT: 35,
   DAY_CELL_WIDTH: 35,
-  MONTH_CELL_WIDTH: 20,
+  WEEK_CELL_WIDTH: 20,
+  MONTH_CELL_WIDTH: 10,
   DAY_MARGIN_TOP:105,
-  MONTH_MARGIN_TOP:70,
-  YEAR_CELL_WIDTH: 5,
+  WEEK_MARGIN_TOP:70,
+  MONTH_MARGIN_TOP:35,
   BACKGROUND_COLOR:'#888888'
 };
 export const dateFormat = {

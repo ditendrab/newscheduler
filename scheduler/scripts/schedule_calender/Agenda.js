@@ -40,8 +40,9 @@ import AgendaDetail from './AgendaDetail';
         const {agendaList, startDate, endDate, header, view} = props;
         const startDateTimestamp = new Date(startDate).getTime();
         const endDateTimestamp = new Date(endDate).getTime();
-        const cellWidth = view == 'day'? layout.DAY_CELL_WIDTH  : layout.MONTH_CELL_WIDTH;
-        const fixedTopMargin = view == 'day'? layout.DAY_MARGIN_TOP  : layout.MONTH_MARGIN_TOP;
+        const cellWidth = helper.getCellWidth(view);
+        const fixedTopMargin = helper.getTopMargin(view);
+        
         return agendaList.map((agenda, index)=> {
 
         const agStartDateTimestamp = new Date(agenda.StartDate).getTime();
