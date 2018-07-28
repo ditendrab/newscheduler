@@ -39,7 +39,7 @@ class ScheduleGrid extends Component {
                 header.map(function(head, index){
                 return <tr key={head.RefId + index}>
                    <td className={classnames('sc-header-col')} >
-                        <div  className={classnames('sc-left-header-cell')} ><div className={classnames('sc-grid-innercell')}  >{head.name}</div></div>
+                        <div  className={classnames('sc-left-header-cell left-header')} ><div className={classnames('sc-grid-innercell')}  >{head.name}</div></div>
                       </td> {
                        dateList.map((head, i)=>{
                        return <td className={classnames('sc-header-col')} key={head+i} >

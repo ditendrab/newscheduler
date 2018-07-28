@@ -221,6 +221,29 @@ let helper = {
     return monthDetail;
   },
 
+  getYearList(startDateStr, endDateStr) {
+    let dateList = [];
+    let sDate = new Date(startDateStr);
+    let eDate = new Date(endDateStr);
+    let startDate = sDate.getDate();
+    let endDate = eDate.getDate();
+    let startMonth = sDate.getMonth();
+    let endMonth = eDate.getMonth();
+    let startYear = sDate.getFullYear();
+    let yearDef = this.getYearDifference(sDate, eDate);
+    console.log("@@@@@@@@yearDef@@",yearDef);
+    var yearDetail = [];
+
+    for (var index = 0; index <= yearDef; index++) {
+      let lastDateOfYearObj = yearDef == 0 || (yearDef == index) ? eDate : this.lastDate(startYear+index, 11);
+      let firstDate = index == 0 ? sDate : new Date(lastDateOfYearObj.getFullYear(),0,1);
+      console.log("@@@@@@@@firstDate@@",firstDate);
+      console.log("@@@@@@@@lastDateOfYearObj@@",lastDateOfYearObj);
+      let dateDiff = this.getDateDifferenceInDay(firstDate, lastDateOfYearObj)
+      yearDetail.push({ diff: dateDiff+1,  year: lastDateOfYearObj.getFullYear() });
+    }
+    return yearDetail;
+  },
 
   lastDate(y, m) {
     return new Date(y, m + 1, 0);
@@ -231,6 +254,10 @@ let helper = {
     months += d2.getMonth();
     months -= d1.getMonth();
     return months <= 0 ? 0 : months;
+},
+getYearDifference(d1, d2) {
+  var year = (d2.getFullYear() - d1.getFullYear());
+ return year;
 },
 
 //    monthDiff(startDate, endDate) {

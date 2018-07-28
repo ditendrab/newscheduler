@@ -8,13 +8,15 @@ import AgendaDetail from './AgendaDetail';
   
    caculateTop(header, agenda, cellWidth, fixedTopMargin){
        const matchedIndex = this.getMachedHeaderIndex(header, agenda.RefId);
-       const top = (35 * matchedIndex) + fixedTopMargin;
+       const top = (40 * matchedIndex) + fixedTopMargin;
     return top;
    }
 
    caculateLeft(agStartDate, startDate, cellWidth){
     const dayDiff = helper.getDateDifferenceInDay(agStartDate, startDate);
-    const left = 180+ dayDiff * cellWidth;
+    console.log("############dayDiff###",dayDiff);
+    console.log("###########cellWidth####",cellWidth);
+    const left = 250+ dayDiff * cellWidth;
     return left;
    }
    
@@ -75,7 +77,7 @@ import AgendaDetail from './AgendaDetail';
     return (
        <table  className={classnames('agenda-container-table')}>
            <tbody>
-               {this.renderAgendaList(this.props)}
+               <tr> {this.renderAgendaList(this.props)}</tr>
              </tbody>
          </table>
     );

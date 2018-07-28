@@ -6,17 +6,17 @@ class Day extends Component {
 
   renderHeaderForMonth(dateDifferencesForMonth) {
     return (
-        <tr>
+        <tr className={classnames('header1-row')}>
              <th  className={classnames('sc-top-header-col')}>
-                    <div className={classnames('sc-top-header-cell')}>
-                        <div className={classnames('sc-header-innercell')}></div>
+                    <div className={classnames('sc-top-header-cell left-header')}>
+                        <div className={classnames('sc-grid-innercell')}></div>
                     </div>
                 </th>
              {
                 dateDifferencesForMonth.map((dateDifference, i)=>{
                 return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
                     <div className={classnames('sc-top-header-cell')}>
-                        <div className={classnames('sc-header-innercell')}>{month[dateDifference.month]} {dateDifference.year}</div>
+                        <div className={classnames('sc-grid-innercell')}>{month[dateDifference.month]} {dateDifference.year}</div>
                     </div>
                 </th>})  
             }
@@ -25,18 +25,17 @@ class Day extends Component {
     );
 }
 
-
   renderHeaderForDay(dateList){
     return (
-           <tr className={classnames('sc-grid-row')}> 
+           <tr className={classnames('sc-grid-row header2-row')}> 
              <th className={classnames('sc-header-col')}>
-                <div className={classnames('sc-left-header-cell')}><div className={classnames('sc-grid-innercell')} ></div></div>
+                <div className={classnames('sc-left-header-cell left-header')}><div className={classnames('sc-grid-innercell')} ></div></div>
              </th>
                 {
                   dateList.map((head, i)=>{
                   return <th className={classnames('sc-header-col')} key={head+i}>
                   <div className={classnames('sc-grid-cell')} >
-                  <div  className={classnames('sc-grid-innercell')} >{head.day}</div>
+                  <div  className={(head.day == 'Sa' ?  classnames('sc-grid-cell sc-grid-cell-border-right') :  classnames('sc-grid-cell'))} >{head.day}</div>
                   </div></th>} )  
                  }
            </tr>
@@ -45,9 +44,9 @@ class Day extends Component {
 
  renderHeaderForDate(dateList){
     return (
-           <tr  className={classnames('sc-grid-row')}>
+           <tr  className={classnames('sc-grid-row header3-row')}>
              <th className={classnames('sc-header-col')}>
-                <div className={classnames('sc-left-header-cell')}><div className={classnames('sc-grid-innercell')} >Meadia/Channel</div></div>
+                <div className={classnames('sc-left-header-cell left-header')}><div className={classnames('sc-header-innercell')} >Meadia/Channel</div></div>
              </th>
                 {
                     dateList.map((head, i)=> {
@@ -58,7 +57,6 @@ class Day extends Component {
            </tr>
     );
  }
-
 
   render() {
     const {startDate, endDate} = this.props; 
