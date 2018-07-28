@@ -27,31 +27,49 @@ class ScheduleGrid extends Component {
      } 
    }
    
+   getHeaderRowsCount(header){
+       var count =0;
+       for(var index = 0; index <  header.length; index++){
+        if(header[index].childs && header[index].childs.length > 0){
+            count+= this.getHeaderRowsCount(header[index].childs);
+         }
+      }
+      count+=header.length;
+    return count;
+   }
+
+   getHeaderRows(header){
+    const count = this.getHeaderRowsCount(header);
+    return count
+   }
+
    renderHeaderRows(props){
     const { header, startDate, endDate, view } = props; 
     let dateList =  helper.getDateList(startDate, endDate);
     console.log("dateList",dateList);
+    const headerRowsCount = this.getHeaderRows(header);
     const width = helper.getCellWidth(view);
     let widthStyle = { width: width+'px' }
+    let rows = [];
+    console.log("headerRowsCount=",headerRowsCount);
+    for(var index =0; index < headerRowsCount ; index++){
+      rows.push(<tr key={index}>
+                         {
+                          dateList.map((head, i)=>{
+                          return <td className={classnames('sc-header-col')} key={head+i} >
+                           <div  style={widthStyle}  className={classnames('sc-grid-cell')} ><div className={classnames('sc-grid-innercell')}  ></div></div>
+                         </td> })  
+                       }
+                   </tr> );
+    }
+
     return (
-      <tbody> 
-              {
-                header.map(function(head, index){
-                return <tr key={head.RefId + index}>
-                   <td className={classnames('sc-header-col')} >
-                        <div  className={classnames('sc-left-header-cell left-header')} ><div className={classnames('sc-grid-innercell')}  >{head.name}</div></div>
-                      </td> {
-                       dateList.map((head, i)=>{
-                       return <td className={classnames('sc-header-col')} key={head+i} >
-                        <div  style={widthStyle}  className={classnames('sc-grid-cell')} ><div className={classnames('sc-grid-innercell')}  ></div></div>
-                      </td> })  
-                    }
-                </tr> 
-               })
-              }
-      </tbody>
-);
+       <tbody>
+         {rows}
+       </tbody>
+      );
    }
+   
     render() {
         return(<table className={classnames('schedule-grid')}>
         {this.renderIntervalRows(this.props)}

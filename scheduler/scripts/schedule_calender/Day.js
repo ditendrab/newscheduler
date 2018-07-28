@@ -7,11 +7,7 @@ class Day extends Component {
   renderHeaderForMonth(dateDifferencesForMonth) {
     return (
         <tr className={classnames('header1-row')}>
-             <th  className={classnames('sc-top-header-col')}>
-                    <div className={classnames('sc-top-header-cell left-header')}>
-                        <div className={classnames('sc-grid-innercell')}></div>
-                    </div>
-                </th>
+           
              {
                 dateDifferencesForMonth.map((dateDifference, i)=>{
                 return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
@@ -28,9 +24,9 @@ class Day extends Component {
   renderHeaderForDay(dateList){
     return (
            <tr className={classnames('sc-grid-row header2-row')}> 
-             <th className={classnames('sc-header-col')}>
+             {/* <th className={classnames('sc-header-col')}>
                 <div className={classnames('sc-left-header-cell left-header')}><div className={classnames('sc-grid-innercell')} ></div></div>
-             </th>
+             </th> */}
                 {
                   dateList.map((head, i)=>{
                   return <th className={classnames('sc-header-col')} key={head+i}>
@@ -45,9 +41,9 @@ class Day extends Component {
  renderHeaderForDate(dateList){
     return (
            <tr  className={classnames('sc-grid-row header3-row')}>
-             <th className={classnames('sc-header-col')}>
+             {/* <th className={classnames('sc-header-col')}>
                 <div className={classnames('sc-left-header-cell left-header')}><div className={classnames('sc-header-innercell')} >Meadia/Channel</div></div>
-             </th>
+             </th> */}
                 {
                     dateList.map((head, i)=> {
                       return <th className={classnames('sc-header-col')} key={head+i} >

@@ -16,7 +16,7 @@ import AgendaDetail from './AgendaDetail';
     const dayDiff = helper.getDateDifferenceInDay(agStartDate, startDate);
     console.log("############dayDiff###",dayDiff);
     console.log("###########cellWidth####",cellWidth);
-    const left = 250+ dayDiff * cellWidth;
+    const left =  dayDiff * cellWidth;
     return left;
    }
    

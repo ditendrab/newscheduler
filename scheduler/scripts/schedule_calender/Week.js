@@ -8,11 +8,11 @@ class Week extends Component {
     renderHeaderForMonth(dateDifferencesForMonth) {
        return (
             <tr className={classnames('header1-row')}>
-                 <th  className={classnames('sc-top-header-col')}>
+                 {/* <th  className={classnames('sc-top-header-col')}>
                         <div className={classnames('sc-top-header-cell')}>
                             <div  className={classnames('sc-header-innercell')}></div>
                         </div>
-                    </th>
+                    </th> */}
                  {
                     dateDifferencesForMonth.map((dateDifference, i)=>{
                     return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
@@ -28,11 +28,6 @@ class Week extends Component {
     renderHeaderForWeek(getWeekList) {
         return (
              <tr className={classnames('header2-row')}>
-                  <th  className={classnames('sc-top-header-col')}>
-                         <div className={classnames('sc-left-header-cell  left-header')}>
-                             <div  className={classnames('sc-header-innercell')}>Meadia/Channel</div>
-                         </div>
-                     </th>
                   {
                      getWeekList.map((weekDetail, i)=>{
                      return <th  className={classnames('sc-top-header-col')} colSpan={weekDetail.dayDiff} key={i}>

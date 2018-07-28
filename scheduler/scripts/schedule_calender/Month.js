@@ -8,11 +8,11 @@ class Month extends Component {
     renderHeaderForMonth(dateDifferencesForMonth) {
        return (
             <tr className={classnames('header2-row')}>
-                  <th  className={classnames('sc-top-header-col')}>
+                  {/* <th  className={classnames('sc-top-header-col')}>
                          <div className={classnames('sc-left-header-cell  left-header')}>
                              <div  className={classnames('sc-header-innercell')}>Meadia/Channel</div>
                          </div>
-                     </th>
+                     </th> */}
                  { 
                     dateDifferencesForMonth.map((dateDifference, i)=>{
                         console.log("dateDifference.diff=",dateDifference.diff)
@@ -29,11 +29,7 @@ class Month extends Component {
     renderHeaderForYear(dateDifferencesForYear) {
         return (
              <tr className={classnames('header1-row')}>
-                   <th  className={classnames('sc-top-header-col')}>
-                          <div className={classnames('sc-left-header-cell  left-header')}>
-                              <div  className={classnames('sc-header-innercell')}></div>
-                          </div>
-                      </th>
+              
                   { 
                      dateDifferencesForYear.map((dateDifference, i)=>{
                          console.log("dateDifference.diff=",dateDifference.diff)
