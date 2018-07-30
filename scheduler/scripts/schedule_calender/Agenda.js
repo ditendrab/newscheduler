@@ -6,16 +6,13 @@ import AgendaDetail from './AgendaDetail';
 
  class Agenda extends Component {
   
-   caculateTop(header, agenda, cellWidth, fixedTopMargin){
-       const matchedIndex = this.getMachedHeaderIndex(header, agenda.RefId);
-       const top = (40 * matchedIndex) + fixedTopMargin;
+   caculateTop(iteratedCount, fixedTopMargin){
+       const top = (40 * iteratedCount) + fixedTopMargin;
     return top;
    }
 
    caculateLeft(agStartDate, startDate, cellWidth){
     const dayDiff = helper.getDateDifferenceInDay(agStartDate, startDate);
-    console.log("############dayDiff###",dayDiff);
-    console.log("###########cellWidth####",cellWidth);
     const left =  dayDiff * cellWidth;
     return left;
    }
@@ -26,16 +23,29 @@ import AgendaDetail from './AgendaDetail';
     return width;
    }
 
-   getMachedHeaderIndex(headerList, id){
-    let matchedIndex = 0;  
+   getMachedHeaderLayoutDetail(headerList, id, level =0){
+    let indexCount = 0;
+    let indexFound = false;
+    let currentLevel = level;
     for(let index =0; index < headerList.length; index++){
+        indexCount++;
         let header = headerList[index];
         if(header.RefId == id){
-            matchedIndex = index;
+            indexFound = true;
             break;
+        }else{
+            if(header && header.childs && header.childs.length > 0){
+                let obj = this.getMachedHeaderLayoutDetail(header.childs, id, level+1);
+                indexFound = obj.indexFound
+                indexCount = indexCount + obj.iteratedCount;
+                if(obj.indexFound == true){
+                    currentLevel =  obj.level;
+                    break;
+                }
+            }
         }
     }
-    return matchedIndex;
+    return {indexFound: indexFound, iteratedCount: indexCount, level: currentLevel} ;
    }
 
     renderAgendaList(props){
@@ -51,8 +61,8 @@ import AgendaDetail from './AgendaDetail';
         const agEndDateTimestamp = new Date(agenda.EndDate).getTime();
         const agStartDate = agStartDateTimestamp < startDateTimestamp ? startDate: agenda.StartDate;
         const agEndDate = agEndDateTimestamp > endDateTimestamp ? endDate: agenda.EndDate;
-        
-        const top = this.caculateTop(header, agenda, cellWidth, fixedTopMargin);
+        let matchedHeaderLayoutDetail = this.getMachedHeaderLayoutDetail(header, agenda.RefId);
+        const top = this.caculateTop(matchedHeaderLayoutDetail.iteratedCount, fixedTopMargin);
         const left = this.caculateLeft(agStartDate, startDate, cellWidth);
         const height = layout.CELL_HEIGHT;
         const width = this.caculateWidth(agEndDate, agStartDate, cellWidth);
@@ -66,6 +76,7 @@ import AgendaDetail from './AgendaDetail';
                 left = {left}
                 id = {agenda.id}
                 agenda = {agenda}
+                level = {matchedHeaderLayoutDetail.level}
                 {...props}
                />
             </td>

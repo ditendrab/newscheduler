@@ -15,7 +15,13 @@
         }
 
         .sc .left {
-            width: 250px;
+            width: 380px;
+            font-weight: 600;
+            -webkit-box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
+            box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
+            z-index: 2;
+            position: relative;
         }
 
         .sc .right {
@@ -101,6 +107,20 @@
             border-radius: 0px;
         }
 
+        .level_0 {
+            background-color: #673BB7;
+        }
+
+        .level_1 {
+            background-color: #b391e0;
+            border: 1px solid #b391e0;
+        }
+
+        .level_2 {
+            background-color: #cdb9e8;
+            border: 1px solid #cdb9e8;
+        }
+
         .sc-grid-cell,
         .sc-header-cell {
             position: relative;
@@ -171,6 +191,7 @@
         .mainHeader {
             background-color: #e8eaed;
             padding-left: 10px;
+            color: #444;
         }
 
         .subHeader {
@@ -178,13 +199,35 @@
             padding-left: 30px;
             border-right: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
+            color: #666;
 
         }
-
+        .channel-header{
+            padding-left: 15px; 
+        }
+        .cost-col-header{
+            float: right;
+            width: 150px;
+            padding-left: 15px;
+        }
+        .cost-col{
+            border-left:1px solid #e8eaed;
+            padding-left: 10px;
+            float: right;
+        }
+        .leafChild{
+            color:#888;
+        }
+        .cost-label{
+            font-size: 12px;
+            padding-left: 5px;
+        }
         .mainHeader img,
         .subHeader img {
             padding-right: 10px;
+            cursor: pointer;
         }
+        .pull-right{float:right}
     </style>
 </head>
 

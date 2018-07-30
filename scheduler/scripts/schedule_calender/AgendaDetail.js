@@ -11,23 +11,20 @@ import classnames from 'classnames';
     }  
 
   
-   
-   
     render(){
-        const { connectDragSource, id, top, height, width, left, agenda } = this.props;
-        let timeSlotLabel = '';//helper.getTimeIntervalLabel(agenda.ScheduledDate, agenda.Duration);
-
+        const { connectDragSource, id, top, height, width, left, agenda, level } = this.props;
+        
         return (
             <div id={id} 
                  draggable="true" 
-                 className={classnames('agenda-container-cell')}
+                 className={classnames(`agenda-container-cell level_${level}`)}
                  style = {{
                     top : `${top}px`,
                     height: `${height}px`,
                     width: `${width}px`,
                     left: `${left}px`
                 }}>
-                <div className={classnames('sc-agenda-details')}>{timeSlotLabel}</div>
+                <div className={classnames('sc-agenda-details cost-label')}>{agenda.cost}</div>
               
               </div>
         );
