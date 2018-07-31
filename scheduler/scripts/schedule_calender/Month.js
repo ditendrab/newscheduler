@@ -15,7 +15,6 @@ class Month extends Component {
                      </th> */}
                  { 
                     dateDifferencesForMonth.map((dateDifference, i)=>{
-                        console.log("dateDifference.diff=",dateDifference.diff)
                     return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
                         <div   className={classnames('sc-top-header-cell sc-grid-cell-border-right')}>
                             <div className={classnames('sc-header-innercell')}> {month[dateDifference.month]} </div>
@@ -32,8 +31,7 @@ class Month extends Component {
               
                   { 
                      dateDifferencesForYear.map((dateDifference, i)=>{
-                         console.log("dateDifference.diff=",dateDifference.diff)
-                     return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
+                    return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
                          <div   className={classnames('sc-top-header-cell sc-grid-cell-border-right')}>
                              <div className={classnames('sc-header-innercell')}> {dateDifference.year} </div>
                          </div>
@@ -49,7 +47,7 @@ class Month extends Component {
         let dateList =  helper.getDateList(startDate, endDate);
         let dateDifferencesForYear = helper.getYearList(startDate, endDate);
         let dateDifferencesForMonth = helper.getDateDifferences(startDate, endDate);
-        console.log("yearList==",dateDifferencesForYear);
+        
         return (
          <thead>
               {this.renderHeaderForYear(dateDifferencesForYear)}

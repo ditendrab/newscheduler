@@ -130,7 +130,7 @@ let helper = {
     let endYear = eDate.getFullYear();
     let startDay = sDate.getDay();
     let monthDef = this.getMonthDifference(sDate, eDate);
-    console.log("@@@@@@@@@@",monthDef);
+    
     var weekDetail = [];
 
     var weekStart = true;
@@ -162,7 +162,7 @@ let helper = {
     let endYear = eDate.getFullYear();
     let startDay = sDate.getDay();
     let monthDef = this.getMonthDifference(sDate, eDate);
-    console.log("@@@@@@@@@@",monthDef);
+    
     var weekDetail = [];
     var weekStart = true;
     var weekEnd = false;
@@ -207,7 +207,7 @@ let helper = {
     let endMonth = eDate.getMonth();
     let startYear = sDate.getFullYear();
     let monthDef = this.getMonthDifference(sDate, eDate);
-    console.log("@@@@@@@@monthDef@@",monthDef);
+    
     var monthDetail = [];
 
     for (var index = 0; index <= monthDef; index++) {
@@ -231,14 +231,12 @@ let helper = {
     let endMonth = eDate.getMonth();
     let startYear = sDate.getFullYear();
     let yearDef = this.getYearDifference(sDate, eDate);
-    console.log("@@@@@@@@yearDef@@",yearDef);
+    
     var yearDetail = [];
 
     for (var index = 0; index <= yearDef; index++) {
       let lastDateOfYearObj = yearDef == 0 || (yearDef == index) ? eDate : this.lastDate(startYear+index, 11);
       let firstDate = index == 0 ? sDate : new Date(lastDateOfYearObj.getFullYear(),0,1);
-      console.log("@@@@@@@@firstDate@@",firstDate);
-      console.log("@@@@@@@@lastDateOfYearObj@@",lastDateOfYearObj);
       let dateDiff = this.getDateDifferenceInDay(firstDate, lastDateOfYearObj)
       yearDetail.push({ diff: dateDiff+1,  year: lastDateOfYearObj.getFullYear() });
     }

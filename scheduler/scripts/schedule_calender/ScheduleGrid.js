@@ -9,7 +9,6 @@ import Month from './Month';
 class ScheduleGrid extends Component {
   
    renderIntervalRows(props){
-     console.log("props.view=",props.view)
     if(props.view == 'day'){
      return (
         <Day width={layout.DAY_CELL_WIDTH} {...this.props}/>
@@ -30,12 +29,14 @@ class ScheduleGrid extends Component {
    getHeaderRowsCount(header){
        var count =0;
        for(var index = 0; index <  header.length; index++){
-        if(header[index].childs && header[index].childs.length > 0){
-            count+= this.getHeaderRowsCount(header[index].childs);
+         if(!header[index].hide){
+           count++;
+          if(header[index].childs && header[index].childs.length > 0){
+              count+= this.getHeaderRowsCount(header[index].childs);
+            }
          }
       }
-      count+=header.length;
-    return count;
+       return count;
    }
 
    getHeaderRows(header){
@@ -44,23 +45,22 @@ class ScheduleGrid extends Component {
    }
 
    renderHeaderRows(props){
-    const { header, startDate, endDate, view } = props; 
+    const { headerList, startDate, endDate, view } = props; 
     let dateList =  helper.getDateList(startDate, endDate);
-    console.log("dateList",dateList);
-    const headerRowsCount = this.getHeaderRows(header);
+    const headerRowsCount = this.getHeaderRows(headerList);
     const width = helper.getCellWidth(view);
     let widthStyle = { width: width+'px' }
     let rows = [];
-    console.log("headerRowsCount=",headerRowsCount);
+   
     for(var index =0; index < headerRowsCount ; index++){
       rows.push(<tr key={index}>
-                         {
-                          dateList.map((head, i)=>{
-                          return <td className={classnames('sc-header-col')} key={head+i} >
-                           <div  style={widthStyle}  className={classnames('sc-grid-cell')} ><div className={classnames('sc-grid-innercell')}  ></div></div>
-                         </td> })  
-                       }
-                   </tr> );
+                    {
+                    dateList.map((head, i)=>{
+                    return <td className={classnames('sc-header-col')} key={head+i} >
+                      <div  style={widthStyle}  className={classnames('sc-grid-cell')} ><div className={classnames('sc-grid-innercell')}  ></div></div>
+                    </td> })  
+                  }
+              </tr> );
     }
 
     return (
@@ -69,7 +69,7 @@ class ScheduleGrid extends Component {
        </tbody>
       );
    }
-   
+
     render() {
         return(<table className={classnames('schedule-grid')}>
         {this.renderIntervalRows(this.props)}

@@ -5,17 +5,43 @@ import Header from './Header';
 import Agenda from './Agenda';
 import classnames from 'classnames';
 
+let current;
 class ScheduleCalender extends Component {
+  
+  
+  constructor(props) {
+    super(props);
+    this.state = { agendaList: props.agendaList, headerList: props.headerList, hiddenHeadersId:[]};
+    current = this;
+  }
 
+  changeHeaderState(header) {
+    current.setState({ headerList: header});
+  }
+
+
+  changeAgendaState(agendaList) {
+    current.setState({ agendaList: agendaList});
+  }
+
+ 
 render(props) {
-   const {header} = this.props; 
     return (
      <div id="scheduleCalender" className={classnames('sc')}> 
-       <Header  {...this.props}  />
+       <Header 
+        changeHeaderState={this.changeHeaderState}
+        {...this.props}
+        headerList={this.state.headerList}
+        agendaList={this.state.agendaList} 
+         />
         
      <div  className={classnames('right inline')}>
-       <ScheduleGrid  {...this.props} />
-       <Agenda {...this.props}/>
+       <ScheduleGrid  {...this.props} 
+        headerList={this.state.headerList}
+        agendaList={this.state.agendaList} />
+       <Agenda {...this.props}
+        headerList={this.state.headerList}
+        agendaList={this.state.agendaList} />
        </div>
     
       </div>

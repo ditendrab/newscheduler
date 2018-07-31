@@ -29,28 +29,28 @@ const agendaList = [
 
 
 const headerList = [{
-  name: "Social Media", RefId: "1-0", title:true, cost:'$15,53,000', childs: [{
-    name: "Facebook", RefId: "1-1",  cost:'$10,53,000', childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', RefId: "1-2"
+  name: "Social Media", RefId: "1-0", title:true, cost:'$15,53,000', hide:false, childs: [{
+    name: "Facebook", RefId: "1-1",  cost:'$10,53,000', hide:false,childs: [{
+      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-2"
     }]
   },
   {
-    name: "Instagram", RefId: "1-3",  cost:'$10,53,000', childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', RefId: "1-4"
+    name: "Instagram", RefId: "1-3",  cost:'$10,53,000', hide:false,childs: [{
+      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-4"
     }]
   }]
 },
 {
-  name: "Paid Search", RefId: "2-0",  cost:'$3,60,000', title:true, childs: [{
-    name: "Adwords", RefId: "2-1",  cost:'$3,60,000', childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$3,60,000', RefId: "2-2"
+  name: "Paid Search", RefId: "2-0",  cost:'$3,60,000', hide:false, title:true, childs: [{
+    name: "Adwords", RefId: "2-1",  cost:'$3,60,000', hide:false, childs: [{
+      name: "UAE|Arabic|Newfeed",  cost:'$3,60,000', hide:false, RefId: "2-2"
     }]
   }]
 },
 {
-  name: "Video", RefId: "3-0",  title:true,  cost:'$80,000', childs: [{
-    name: "Youtube", RefId: "3-1", cost:'$80,000', childs: [{
-      name: "UAE|Arabic|Newfeed", cost:'$80,000', RefId: "3-2"
+  name: "Video", RefId: "3-0",  title:true,  cost:'$80,000', hide:false, childs: [{
+    name: "Youtube", RefId: "3-1", cost:'$80,000', hide:false, childs: [{
+      name: "UAE|Arabic|Newfeed", cost:'$80,000', hide:false, RefId: "3-2"
     }]
   }]
 }
@@ -61,7 +61,7 @@ let current;
 class App extends Component {
   constructor() {
     super();
-    this.state = { agendaList: agendaList, headerList: headerList, currentView: views.DAY };
+    this.state = { agendaList: agendaList, headerList: headerList, currentView: views.MONTH };
     current = this;
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
       endDate={endDate}
       interval={interval}
       view={this.state.currentView}
-      header={this.state.headerList}
+      headerList={this.state.headerList}
       chairFieldName='OperatoryID'
       agendaList={this.state.agendaList} />)
   }
@@ -94,7 +94,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("#####", current.state.currentView);
+    
     let view = current.state.currentView;
     return (
       <div className="componentMain">
