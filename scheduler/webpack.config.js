@@ -72,6 +72,11 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'scripts')
+      },
+      
+    {
+      test: /\.(gif|svg|jpg|png)$/,
+      loader: "file-loader",
       }
     ]
   }
