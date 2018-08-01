@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import minus from '../images/minus.png';
 import plus from '../images/plus.png';
-import {views} from './utils/constants';
+import {views, layout} from './utils/constants';
 let clickedHeaderId;
 class Header extends Component {
 
@@ -96,9 +96,11 @@ class Header extends Component {
 
     render() {
         const { headerList, view } = this.props;
-        let leftHeaderStyle = { width: '150px' };
+        let leftHeaderStyle = { width: layout.LEFT_TREE_WIDTH+'px' };
+        
+        
         return (
-            <div className={classnames('left inline')}>
+            <div style={leftHeaderStyle} className={classnames('left inline')}>
                 <div className={classnames('rowHeight header1-row')}></div>
                 <div className={classnames('rowHeight header2-row')} >
                 { view != views.DAY ?  <div ><div  className={classnames('inline channel-header')} >Media/Channel</div><div  className={classnames('inline cost-col-header')}>Total Cost</div> </div>: ''}

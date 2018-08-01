@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { timeSlot, views } from './utils/constants';
+import { timeSlot, views, layout } from './utils/constants';
 import ScheduleGrid from './ScheduleGrid';
 import Header from './Header';
 import Agenda from './Agenda';
@@ -11,7 +11,7 @@ class ScheduleCalender extends Component {
   
   constructor(props) {
     super(props);
-    this.state = { agendaList: props.agendaList, headerList: props.headerList, hiddenHeadersId:[]};
+    this.state = { agendaList: props.agendaList, headerList: props.headerList, hiddenHeadersId:[], schduleCalenderWidth:1000};
     current = this;
   }
 
@@ -23,11 +23,19 @@ class ScheduleCalender extends Component {
   changeAgendaState(agendaList) {
     current.setState({ agendaList: agendaList});
   }
-
+  componentDidMount(){
+    console.log("****scheduleCalender==",this.refs.scheduleCalender.offsetWidth);
+    current.setState({ schduleCalenderWidth: this.refs.scheduleCalender.offsetWidth});
+  }
  
 render(props) {
+   let schduleCalWidth = this.state.schduleCalenderWidth;
+   console.log("schduleCalWidth==",schduleCalWidth);
+      
+   let widthStyle = { width: (schduleCalWidth - layout.LEFT_TREE_WIDTH -5)+'px' };
+  
     return (
-     <div id="scheduleCalender" className={classnames('sc')}> 
+     <div id="scheduleCalender"  ref="scheduleCalender" className={classnames('sc')}> 
        <Header 
         changeHeaderState={this.changeHeaderState}
         {...this.props}
@@ -35,7 +43,7 @@ render(props) {
         agendaList={this.state.agendaList} 
          />
         
-     <div  className={classnames('right inline')}>
+     <div style={widthStyle} className={classnames('right inline')}>
        <ScheduleGrid  {...this.props} 
         headerList={this.state.headerList}
         agendaList={this.state.agendaList} />

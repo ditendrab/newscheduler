@@ -8,6 +8,7 @@ import Month from './Month';
 
 class ScheduleGrid extends Component {
   
+
    renderIntervalRows(props){
     if(props.view == 'day'){
      return (
@@ -71,6 +72,8 @@ class ScheduleGrid extends Component {
    }
 
     render() {
+
+      
         return(<table className={classnames('schedule-grid')}>
         {this.renderIntervalRows(this.props)}
         {this.renderHeaderRows(this.props)}
