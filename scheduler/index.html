@@ -15,13 +15,14 @@
         }
 
         .sc .left {
-            width: 380px;
+            width: 450px;
             font-weight: 600;
             -webkit-box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
             box-shadow: 10px 2px 24px -12px rgba(0, 0, 0, 0.75);
             z-index: 2;
             position: relative;
+            font-size: 14px;
         }
 
         .sc .right {
@@ -255,7 +256,7 @@
             text-align: center;
             border-radius: 6px;
             padding: 10px;
-            bottom: 100%;
+            bottom: 120%;
             font-size: 14px;
             text-align: left;
             /* Position the tooltip */
@@ -270,7 +271,8 @@
         .tooltip-container .tooltiptext::after {
             content: " ";
             position: absolute;
-            top: 100%; /* At the bottom of the tooltip */
+            top: 100%;
+            /* At the bottom of the tooltip */
             left: 50%;
             margin-left: -5px;
             border-width: 5px;
@@ -278,7 +280,26 @@
             border-color: #333 transparent transparent transparent;
         }
 
-        .sc-agenda-details{width:100%; height:20px;line-height: 17px;}
+        .sc-agenda-details {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .small-circle {
+            position: relative;
+            background: #999;
+            width: 8px;
+            height: 8px;
+            text-align: center;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+        .left .small-circle{
+            margin-right:5px;
+            margin-left: 3px;
+        }
     </style>
 </head>
 

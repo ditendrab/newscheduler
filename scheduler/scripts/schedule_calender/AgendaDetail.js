@@ -51,7 +51,7 @@ class AgendaDetail extends Component {
                             left: `${this.state.hoverLeftPostion}px`
                         }}
                         className={classnames('tooltiptext')}>
-                        <div>{startDateFormated}- {endDateFormated} </div>
+                        <div>{startDateFormated} - {endDateFormated} </div>
                         <div style={{ paddingTop: `5px` }}>{agenda.cost}</div>
                     </div></div>
 

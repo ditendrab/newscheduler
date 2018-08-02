@@ -81,7 +81,7 @@ class Header extends Component {
                 //  if(!headerList[index].hide){
                 header.push(<div className={headerList[index].hide ? classnames('display-none') : ''}>
                     <div className={classnames(headerList[index].title ? 'mainHeader rowHeight' : 'subHeader rowHeight')}>
-                        {childheader.length > 0 ? img : ''}
+                        {childheader.length > 0 ? img : <div className={classnames('small-circle inline')}></div>}
                         <div style={widthStyle} className={classnames(`rowHeight inline ${leafNodeClass}`)} >
                             {headerList[index].name}
                         </div>

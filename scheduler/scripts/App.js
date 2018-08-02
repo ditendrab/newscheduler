@@ -31,26 +31,26 @@ const agendaList = [
 const headerList = [{
   name: "Social Media", RefId: "1-0", title:true, cost:'$15,53,000', hide:false, childs: [{
     name: "Facebook", RefId: "1-1",  cost:'$10,53,000', hide:false,childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-2"
+      name: "UAE | Arabic | Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-2"
     }]
   },
   {
     name: "Instagram", RefId: "1-3",  cost:'$10,53,000', hide:false,childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-4"
+      name: "UAE | Arabic | Newfeed",  cost:'$10,53,000', hide:false, RefId: "1-4"
     }]
   }]
 },
 {
   name: "Paid Search", RefId: "2-0",  cost:'$3,60,000', hide:false, title:true, childs: [{
     name: "Adwords", RefId: "2-1",  cost:'$3,60,000', hide:false, childs: [{
-      name: "UAE|Arabic|Newfeed",  cost:'$3,60,000', hide:false, RefId: "2-2"
+      name: "UAE | Arabic | Newfeed",  cost:'$3,60,000', hide:false, RefId: "2-2"
     }]
   }]
 },
 {
   name: "Video", RefId: "3-0",  title:true,  cost:'$80,000', hide:false, childs: [{
     name: "Youtube", RefId: "3-1", cost:'$80,000', hide:false, childs: [{
-      name: "UAE|Arabic|Newfeed", cost:'$80,000', hide:false, RefId: "3-2"
+      name: "UAE | Arabic | Newfeed", cost:'$80,000', hide:false, RefId: "3-2"
     }]
   }]
 }
