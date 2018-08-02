@@ -202,35 +202,83 @@
             color: #666;
 
         }
-        .channel-header{
-            padding-left: 15px; 
+
+        .channel-header {
+            padding-left: 15px;
         }
-        .cost-col-header{
+
+        .cost-col-header {
             float: right;
             width: 150px;
             padding-left: 15px;
         }
-        .cost-col{
-            border-left:1px solid #e8eaed;
+
+        .cost-col {
+            border-left: 1px solid #e8eaed;
             padding-left: 10px;
             float: right;
         }
-        .leafChild{
-            color:#888;
+
+        .leafChild {
+            color: #888;
         }
-        .cost-label{
+
+        .cost-label {
             font-size: 12px;
             padding-left: 5px;
         }
+
         .mainHeader img,
         .subHeader img {
             padding-right: 10px;
             cursor: pointer;
         }
-        .pull-right{float:right}
-        .display-none{
+
+        .pull-right {
+            float: right
+        }
+
+        .display-none {
             display: none;
         }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-container .tooltiptext {
+            visibility: hidden;
+            width: 195px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            bottom: 100%;
+            font-size: 14px;
+            text-align: left;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        .tooltip-container:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        .tooltip-container .tooltiptext::after {
+            content: " ";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .sc-agenda-details{width:100%; height:20px;line-height: 17px;}
     </style>
 </head>
 
