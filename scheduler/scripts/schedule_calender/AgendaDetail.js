@@ -30,10 +30,10 @@ class AgendaDetail extends Component {
     render() {
         const { connectDragSource, id, top, height, width, left, agenda, level } = this.props;
 
-        let startDate = new Date(agenda.StartDate);
-        let EndDate = new Date(agenda.EndDate);
+        let startDate = new Date(agenda.startDate);
+        let endDate = new Date(agenda.endDate);
         let startDateFormated = month[startDate.getMonth()] + " " + startDate.getDate() + ", " + startDate.getFullYear();
-        let endDateFormated = month[EndDate.getMonth()] + " " + EndDate.getDate() + ", " + EndDate.getFullYear();
+        let endDateFormated = month[endDate.getMonth()] + " " + endDate.getDate() + ", " + endDate.getFullYear();
 
         return (
             <div id={id}
@@ -45,14 +45,14 @@ class AgendaDetail extends Component {
                     width: `${width}px`,
                     left: `${left}px`
                 }}>
-                <div onMouseMoveCapture={(e) => this.onHover(e)} className={classnames('sc-agenda-details cost-label tooltip-container')}>{agenda.cost}
+                <div onMouseMoveCapture={(e) => this.onHover(e)} className={classnames('sc-agenda-details cost-label tooltip-container')}>{'$'+agenda.cost}
                     <div
                         style={{
                             left: `${this.state.hoverLeftPostion}px`
                         }}
                         className={classnames('tooltiptext')}>
                         <div>{startDateFormated} - {endDateFormated} </div>
-                        <div style={{ paddingTop: `5px` }}>{agenda.cost}</div>
+                        <div style={{ paddingTop: `5px` }}>{'$'+agenda.cost}</div>
                     </div></div>
 
             </div>

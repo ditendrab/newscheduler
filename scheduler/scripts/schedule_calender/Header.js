@@ -76,7 +76,7 @@ class Header extends Component {
                 } else {
                     img = <img id={headerList[index].refId} onClick={(e) => this.hideOrShowMatchedHeader(e, false)} className={classnames('inline')} src={plus} />
                 }
-                let widthStyle = { width: '150px' };
+                let widthStyle = { width: '190px' };
                 let leafNodeClass = childheader == '' ? 'leafChild' : '';
                 //  if(!headerList[index].hide){
                 header.push(<div className={headerList[index].hide ? classnames('display-none') : ''}>
@@ -86,7 +86,7 @@ class Header extends Component {
                             {headerList[index].name}
                         </div>
                         <div style={widthStyle} className={classnames(`rowHeight inline cost-col ${leafNodeClass}`)} >
-                            {headerList[index].cost}
+                            {'$'+headerList[index].cost}
                         </div>
                     </div>{childheader}</div>);
                 // }

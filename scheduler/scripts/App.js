@@ -97,6 +97,7 @@ class App extends Component {
             mediaHeader.cost = media.mediaCost;
             mediaHeader.childs = [];
             mediaHeader.refId = "media-" + index;
+            mediaHeader.title = true;
             let parentAgendaList = [];
 
             if (media.digitalChannelListResponse && media.digitalChannelListResponse.length > 0) {

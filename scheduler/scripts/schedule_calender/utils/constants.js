@@ -19,7 +19,7 @@ export const layout = {
   WEEK_MARGIN_TOP:55,
   MONTH_MARGIN_TOP:55,
   BACKGROUND_COLOR:'#888888',
-  LEFT_TREE_WIDTH:380
+  LEFT_TREE_WIDTH:450
 };
 export const dateFormat = {
   DATE_TIME_FORMAT_WITH_ZONE:'YYYY-MM-DDTHH:mm:ss[Z]',
