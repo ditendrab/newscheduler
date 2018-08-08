@@ -6,12 +6,12 @@ import { views, layout } from './utils/constants';
 let clickedHeaderId;
 class Header extends Component {
 
-    hideOrShowChild(headerList, RefId, isHide) {
+    hideOrShowChild(headerList, refId, isHide) {
         let matchedRefId = false;
 
         if (headerList && headerList.length > 0) {
             for (let index = 0; index < headerList.length; index++) {
-                if (headerList[index].RefId == RefId) {
+                if (headerList[index].refId == refId) {
                     headerList[index].childHide = isHide;
                     if (headerList[index].childs && headerList[index].childs.length > 0) {
                         let childHeaders = headerList[index].childs;
@@ -25,7 +25,7 @@ class Header extends Component {
                     break
                 } else {
                     if (headerList[index].childs && headerList[index].childs.length > 0) {
-                        matchedRefId = this.hideOrShowChild(headerList[index].childs, RefId, isHide);
+                        matchedRefId = this.hideOrShowChild(headerList[index].childs, refId, isHide);
                         if (matchedRefId) break;
                     }
                 }
@@ -40,7 +40,7 @@ class Header extends Component {
 
         if (headerList && headerList.length > 0) {
             for (let index = 0; index < headerList.length; index++) {
-                if (headerList[index].RefId == refId) {
+                if (headerList[index].refId == refId) {
                     if (headerList[index].childs && headerList[index].childs.length > 0) {
                         headerList[index].childHide = isHide;
                         let childHeaders = headerList[index].childs;
@@ -72,9 +72,9 @@ class Header extends Component {
 
                 let img;
                 if (isHidden) {
-                    img = <img id={headerList[index].RefId} onClick={(e) => this.hideOrShowMatchedHeader(e, true)} className={classnames('inline')} src={minus} />
+                    img = <img id={headerList[index].refId} onClick={(e) => this.hideOrShowMatchedHeader(e, true)} className={classnames('inline')} src={minus} />
                 } else {
-                    img = <img id={headerList[index].RefId} onClick={(e) => this.hideOrShowMatchedHeader(e, false)} className={classnames('inline')} src={plus} />
+                    img = <img id={headerList[index].refId} onClick={(e) => this.hideOrShowMatchedHeader(e, false)} className={classnames('inline')} src={plus} />
                 }
                 let widthStyle = { width: '150px' };
                 let leafNodeClass = childheader == '' ? 'leafChild' : '';

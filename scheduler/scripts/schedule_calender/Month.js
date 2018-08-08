@@ -28,7 +28,6 @@ class Month extends Component {
     renderHeaderForYear(dateDifferencesForYear) {
         return (
              <tr className={classnames('header1-row')}>
-              
                   { 
                      dateDifferencesForYear.map((dateDifference, i)=>{
                     return <th  className={classnames('sc-top-header-col')} colSpan={dateDifference.diff} key={i}>
@@ -38,7 +37,6 @@ class Month extends Component {
                      </th>})  
                  }
              </tr>
-            
          );
      }
     

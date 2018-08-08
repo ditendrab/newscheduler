@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { clock, dateFormat, day } from './constants';
 import { layout } from './constants';
+import { Agenda } from '../models/Scheduler';
 
 let helper = {
   splitTime(time, delimiter) {
@@ -297,7 +298,92 @@ getYearDifference(d1, d2) {
       marginTop = layout.MONTH_MARGIN_TOP
     }
     return marginTop;
-  }
+  },
+
+  
+  mergeAgendaByDate(agendaList, refId, currentIndex = 0) {
+
+    console.log("#######################################", agendaList);
+    let newAgendaList = [];
+
+    if ((agendaList && agendaList.length > 1) && (currentIndex < agendaList.length)) {
+        let firstAgenda = Object.assign({}, agendaList[currentIndex]);
+        console.log("firstAgenda==", firstAgenda);
+        let shouldMerge = false;
+        let mergeFound = false;
+        for (var index = 0; index < currentIndex; index++) {
+            newAgendaList.push(agendaList[index]);
+        }
+
+        for (var inIndex = currentIndex + 1; inIndex < agendaList.length; inIndex++) {
+            let nextAgenda = Object.assign({}, agendaList[inIndex]);
+            if (!mergeFound) {
+
+                console.log("nextAgenda==", nextAgenda);
+                var firstAgendaSD = new Date(firstAgenda.startDate).getTime();
+                var firstAgendaED = new Date(firstAgenda.endDate).getTime();
+                var nextAgendaSD = new Date(nextAgenda.startDate).getTime();
+                var nextAgendaED = new Date(nextAgenda.endDate).getTime();
+                let agenda = new Agenda();
+                agenda.refId = refId;
+
+                if (firstAgendaSD >= nextAgendaSD && firstAgendaSD <= nextAgendaED) {
+                    agenda.startDate = nextAgenda.startDate;
+                    shouldMerge = true;
+                } else if (nextAgendaSD >= firstAgendaSD && nextAgendaSD <= firstAgendaED) {
+                    console.log("***")
+                    agenda.startDate = firstAgenda.startDate;
+                    shouldMerge = true;
+                } else {
+                    agenda.startDate = firstAgenda.startDate;
+                }
+
+                if (firstAgendaED >= nextAgendaSD && firstAgendaED <= nextAgendaED) {
+                    agenda.endDate = nextAgenda.endDate;
+                    shouldMerge = true;
+                } else if (nextAgendaED >= firstAgendaSD && nextAgendaED <= firstAgendaED) {
+                    agenda.endDate = firstAgenda.endDate;
+                    console.log("*****")
+                    shouldMerge = true;
+                } else {
+                    agenda.endDate = firstAgenda.endDate;
+                }
+                if (shouldMerge) {
+                    agenda.cost = firstAgenda.cost + nextAgenda.cost;
+                    console.log("###shouldMerge##", agenda);
+                    newAgendaList.push(agenda);
+                    mergeFound = true;
+
+                } else {
+                    newAgendaList.push(nextAgenda);
+                }
+            } else {
+                newAgendaList.push(nextAgenda);
+            }
+        }
+        if (!mergeFound) {
+            console.log("$$$$$$$$$$3333333333$$$$$$$", newAgendaList)
+
+            newAgendaList.splice(currentIndex, 0, firstAgenda);
+            console.log("$$$$$$$$$$$$33333333333333$$$$$", newAgendaList)
+            currentIndex++;
+        }
+    } else {
+        console.log("#########################*************########test######");
+        for (var index = 0; index < agendaList.length; index++) {
+            let agenda = Object.assign({}, agendaList[index]);
+            agenda.refId = refId;
+            newAgendaList.push(agenda);
+        }
+
+        return newAgendaList;
+    }
+
+    let test = this.mergeAgendaByDate(newAgendaList, refId, currentIndex);
+    console.log("#################################test######", test);
+    return test;
+}
+
 
 }
 

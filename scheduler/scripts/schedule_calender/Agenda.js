@@ -27,8 +27,8 @@ import AgendaDetail from './AgendaDetail';
        let ids = [];
        if(headerList)
        for(let  index = 0; index < headerList.length; index++){
-        if(headerList[index].RefId){
-            ids.push(headerList[index].RefId)
+        if(headerList[index].refId){
+            ids.push(headerList[index].refId)
            if(headerList[index].childs && headerList[index].childs.length > 0){
             let childsId = this.getAllChildsId(headerList[index].childs);
             ids = ids.concat(childsId);
@@ -43,7 +43,7 @@ import AgendaDetail from './AgendaDetail';
     if(headerList && headerList.length > 0){
       for(let  index = 0; index < headerList.length; index++){
           if(headerList[index].hide){
-            hiddenHeadersId.push(headerList[index].RefId)
+            hiddenHeadersId.push(headerList[index].refId)
             let childIds = this.getAllChildsId(headerList[index].childs);
             hiddenHeadersId = hiddenHeadersId.concat(childIds);
           }else{
@@ -65,7 +65,7 @@ import AgendaDetail from './AgendaDetail';
         let header = headerList[index];
         if(!header.hide){
             indexCount++;
-            if(header.RefId == id){
+            if(header.refId == id){
                 indexFound = true;
                 break;
             }else{
@@ -93,17 +93,17 @@ import AgendaDetail from './AgendaDetail';
         let hiddenHeadersId = this.findAllHiddenHeaders(this.props.headerList);
         return agendaList.map((agenda, index)=> {
 
-        const agStartDateTimestamp = new Date(agenda.StartDate).getTime();
-        const agEndDateTimestamp = new Date(agenda.EndDate).getTime();
-        const agStartDate = agStartDateTimestamp < startDateTimestamp ? startDate: agenda.StartDate;
-        const agEndDate = agEndDateTimestamp > endDateTimestamp ? endDate: agenda.EndDate;
-        let matchedHeaderLayoutDetail = this.getMachedHeaderLayoutDetail(headerList, agenda.RefId);
+        const agStartDateTimestamp = new Date(agenda.startDate).getTime();
+        const agEndDateTimestamp = new Date(agenda.endDate).getTime();
+        const agStartDate = agStartDateTimestamp < startDateTimestamp ? startDate: agenda.startDate;
+        const agEndDate = agEndDateTimestamp > endDateTimestamp ? endDate: agenda.endDate;
+        let matchedHeaderLayoutDetail = this.getMachedHeaderLayoutDetail(headerList, agenda.refId);
         const top = this.caculateTop(matchedHeaderLayoutDetail.iteratedCount, fixedTopMargin);
         const left = this.caculateLeft(agStartDate, startDate, cellWidth);
         const height = layout.CELL_HEIGHT;
         const width = this.caculateWidth(agEndDate, agStartDate, cellWidth);
         let shouldRenderAgendaDetail = true;
-        if(hiddenHeadersId && hiddenHeadersId.length > 0 && hiddenHeadersId.indexOf(agenda.RefId) != -1){
+        if(hiddenHeadersId && hiddenHeadersId.length > 0 && hiddenHeadersId.indexOf(agenda.refId) != -1){
             shouldRenderAgendaDetail = false;
         }
         if(shouldRenderAgendaDetail)
