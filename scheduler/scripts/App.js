@@ -78,7 +78,7 @@ class App extends Component {
 
   componentWillMount(){
    let schdulerData =  this.buildDataForScheduler(schedulerData);
-   console.log("schdulerData=",schdulerData.agendaList);
+   console.log("schdulerData=",schdulerData);
    current.setState({ headerList: schdulerData.headerList, agendaList: schdulerData.agendaList});
   }
   buildDataForScheduler(list) {
@@ -110,7 +110,7 @@ class App extends Component {
                     channelHeader.hide = false;
                     channelHeader.cost = channel.channelCost;
                     channelHeader.childs = [];
-                    channelHeader.refId = "channel-" + chIndex;
+                    channelHeader.refId = "channel-" + chIndex+"-m"+index;
                     mediaHeader.childs.push(channelHeader);
                     let digitalAgendaList = [];
 
@@ -124,7 +124,7 @@ class App extends Component {
                             digitalChannelHeader.name = name;
                             digitalChannelHeader.cost = digitalChannel.totalCost;
                             digitalChannelHeader.hide = false;
-                            digitalChannelHeader.refId = "dgChannel-" + dchIndex;
+                            digitalChannelHeader.refId = "dgChannel-" + dchIndex + "-"+ channelHeader.refId
                             channelHeader.childs.push(digitalChannelHeader);
                             let digitalFlights = digitalChannel.digitalFlights;
                             if (digitalFlights && digitalFlights.length > 0) {
@@ -137,10 +137,19 @@ class App extends Component {
                                     agenda.refId = digitalChannelHeader.refId;
                                     digitalAgendaList.push(agenda);
                                 }
+                            }else{
+                               let agenda = new Agenda();
+                                    agenda.cost = digitalChannel.totalCost;
+                                    agenda.startDate = digitalChannel.startDate;
+                                    agenda.endDate = digitalChannel.endDate;
+                                    agenda.refId = digitalChannelHeader.refId;
+                                    digitalAgendaList.push(agenda);
                             }
+
                         }
                     }
                     let tempParentAgendaList = this.getParentDateRange(digitalAgendaList, channelHeader.refId);
+                    console.log("==tempParentAgendaList",tempParentAgendaList);
                     agendaList = agendaList.concat(digitalAgendaList);
                     parentAgendaList = parentAgendaList.concat(tempParentAgendaList);
                 }
@@ -157,12 +166,13 @@ class App extends Component {
 
 getParentDateRange(agendaList, refId) {
     let updatedAgendaList = helper.mergeAgendaByDate(agendaList, refId, 0);
+    console.log("updatedAgendaList",updatedAgendaList);
     return updatedAgendaList;
 }
 
   renderScheduler() {
 
-    const startDate = "09-01-2018";  //mm-dd-yyyy     
+    const startDate = "08-01-2018";  //mm-dd-yyyy     
     const endDate = "02-05-2019";
     const interval = 30;
 
